@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs'
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme/theme-provider"
+import { ToggleTheme } from "@/components/theme/toggle-theme";
 import { UserButton } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,9 +22,26 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-            <UserButton />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div className="p-3 border-b-2">
+              <nav className="flex flex-wrap flex-row justify-between">
+                <div className="text-2xl font-extrabold uppercase">
+                  Pwd Manager
+                </div>
+                <div className="flex flex-wrap flex-row justify-end gap-5 ">
+                  <ToggleTheme />
+                  <UserButton />
+                </div>
+              </nav>
+            </div>
 
             {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
