@@ -7,15 +7,17 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription
 } from "@/components/ui/form"
+import { toast } from "@/components/ui/use-toast"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { GoArrowLeft } from "react-icons/go";
+import { MdOutlineCreateNewFolder } from "react-icons/md";
+
 
 
 import {
@@ -50,6 +52,14 @@ function NewProjectPage() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
+        </pre>
+      ),
+    })
     console.log(values)
   }
 
@@ -57,48 +67,67 @@ function NewProjectPage() {
   return (
     <div className="flex flex-wrap flex-row h-full max-h-100 justify-center content-center bg-[url('/images/graph-paper.svg')] bg-opacity-25">
       <div>
-      <Card>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <CardHeader>
-              <CardTitle>Create new project</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-            </CardHeader>
+        <Card className="w-[400px] max-w-full">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <CardHeader>
+                <CardTitle className="flex gap-2"><MdOutlineCreateNewFolder /> Create new project</CardTitle>
+                <CardDescription>To keep your credentials</CardDescription>
+              </CardHeader>
 
-            <CardContent>
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Title</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Project title" {...field} />
-                    </FormControl>
-                    <FormLabel>URL</FormLabel>
-                    <FormControl>
-                      <Input placeholder="http://url.com" {...field} />
-                    </FormControl>
-                    <FormLabel>Picture</FormLabel>
-                    <FormControl>
-                      <Input id="picture" type="file" placeholder="shadcn" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      This picture will be shown as the thumbnail. <br />The picture must be 1:1 and at leas 50x50px.
-                    </FormDescription>
+              <CardContent>
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="mb-5 flex flex-col gap-3">
+                        <FormLabel>Title</FormLabel>
+                        <FormControl >
+                          <Input placeholder="Project title" {...field} />
+                        </FormControl>
+                      </div>
+                    </FormItem>
+                  )} />
+                <FormField
+                  control={form.control}
+                  name="url"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="mb-5 flex flex-col gap-3">
+                        <FormLabel>URL</FormLabel>
+                        <FormControl>
+                          <Input placeholder="http://www.url.com" {...field} />
+                        </FormControl>
+                      </div>
+                    </FormItem>
+                  )} />
+                <FormField
+                  control={form.control}
+                  name="picture"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="mb-5 flex flex-col gap-3">
+                        <FormLabel>Picture</FormLabel>
+                        <FormControl>
+                          <Input id="picture" type="file" placeholder="shadcn" {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          This picture will be shown as the thumbnail. <br />The picture must be 1:1 and at leas 50x50px.
+                        </FormDescription>
+                      </div>
+                    </FormItem>
+                  )} />
+                <FormMessage />
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Link href="/" className=" items-center flex gap-1 text-slate"><GoArrowLeft /> Go back</Link>
-              <Button type="submit">Add new</Button>
-            </CardFooter>
-          </form>
-        </Form>
-      </Card>
+              </CardContent>
+              <CardFooter className="flex justify-between">
+                <Link href="/" className=" items-center flex gap-1 text-slate"><GoArrowLeft /> Go back</Link>
+                <Button type="submit">Add new</Button>
+              </CardFooter>
+            </form>
+          </Form>
+        </Card>
       </div>
     </div>
   )
