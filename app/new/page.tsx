@@ -52,7 +52,7 @@ function NewProjectPage() {
 
 
   return (
-    <div className="flex flex-wrap flex-row h-5/6 justify-center content-center">
+    <div className="flex flex-wrap flex-row h-full max-h-100 justify-center content-center bg-[url('/images/graph-paper.svg')] bg-opacity-25">
       <div className="">
       <Card>
         <Form {...form}>
