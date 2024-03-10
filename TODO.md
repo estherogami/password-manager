@@ -7,12 +7,26 @@
 - [ ] Redirect when created & Show toast.
 - [ ] Error validation.
 - [ ] convert to edit project instead of new if already exists.
-3. API
+
 2. Project list (Dashboard)
 - [ ] Search
 - [ ] Autocomplete
 - [ ] Skelleton (preload)
+
 3. Project Credentials
 - [ ] Skelleton (preload)
-4. Create Credentials
+- [ ] Project info
+- [ ] Credentials list
+- [ ] Edit, add buttons
+
+4. New Credentials
 - [ ] Drag & Drop 
+
+5. API & DB
+- [ ] Run a postgresql database server on local
+- [ ] Prisma schema for project
+- [ ] Create project
+- [ ] GetProjectList
+- [ ] GetProjectById
+- [ ] DeleteProject
+- [ ] EditProject
