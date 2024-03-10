@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider"
 import { ToggleTheme } from "@/components/theme/toggle-theme";
 import { UserButton } from "@clerk/nextjs";
+import { Sidebar } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,18 +21,18 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={inter.className}>
+      <html lang="en" className="h-full">
+        <body className="h-full">
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            <div className="p-3 border-b-2">
+            <div className="p-2 border-b-2">
               <nav className="flex flex-wrap flex-row justify-between">
-                <div className="text-2xl font-extrabold uppercase">
-                  Pwd Manager
+                <div className="text-xl font-extrabold uppercase flex gap-1">
+                  <Sidebar /> Pwd Manager
                 </div>
                 <div className="flex flex-wrap flex-row justify-end gap-5 ">
                   <ToggleTheme />
