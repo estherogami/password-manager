@@ -1,10 +1,12 @@
-
+import Sidebar from "@/components/sidebar/sidebar"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      
-  aaa
+    <main className="h-full">
+      <div className="flex flex-wrap flex-row gap-5 h-full">
+        <Sidebar />
+        <div className="grow">main view</div>
+      </div>
     </main>
   );
 }
