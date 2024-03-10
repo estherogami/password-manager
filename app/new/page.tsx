@@ -18,8 +18,6 @@ import { Input } from "@/components/ui/input"
 import { GoArrowLeft } from "react-icons/go";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 
-
-
 import {
   Card,
   CardContent,
@@ -30,11 +28,29 @@ import {
 } from "@/components/ui/card"
 import Link from "next/link"
 
+//File input validation variables
+const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const ACCEPTED_IMAGE_MIME_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
+const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
+
 
 const formSchema = z.object({
-  title: z.string().max(50, { message: "Title must be shorter than 50 characters." }),
-  picture: z.string().optional(),
-  url: z.string().url().optional()
+  title: z.string().min(3, { message: "Tittle must be longer than 3 characters" }).max(50, { message: "Title must be shorter than 50 characters." }),
+  url: z.string().optional(),
+  picture: z.any()
+    .optional()
+    .refine((files) => {
+      return files?.[0]?.size <= MAX_FILE_SIZE;
+    }, `Max image size is 5MB.`)
+    .refine(
+      (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
 });
 
 function NewProjectPage() {
@@ -48,8 +64,13 @@ function NewProjectPage() {
     },
   })
 
+
+
+
+
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
+
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     toast({

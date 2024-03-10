@@ -2,11 +2,11 @@
 
 1. New Project Page
 - [ ] Preview image upload.
-- [ ] Validate image format/sice
-- [ ] resize/crop.
+- [ ] Resize/crop Image.
 - [ ] Redirect when created & Show toast.
-- [ ] Error validation.
-- [ ] convert to edit project instead of new if already exists.
+- [ ] Show validation error messages.
+- [x] Zod file validation picture.
+- [ ] Edit project if already exists.
 
 2. Project list (Dashboard)
 - [ ] Search
