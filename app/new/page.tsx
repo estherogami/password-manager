@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { GoArrowLeft } from "react-icons/go";
+
 
 import {
   Card,
@@ -24,6 +26,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import Link from "next/link"
 
 
 const formSchema = z.object({
@@ -53,7 +56,7 @@ function NewProjectPage() {
 
   return (
     <div className="flex flex-wrap flex-row h-full max-h-100 justify-center content-center bg-[url('/images/graph-paper.svg')] bg-opacity-25">
-      <div className="">
+      <div>
       <Card>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -89,7 +92,8 @@ function NewProjectPage() {
                 )}
               />
             </CardContent>
-            <CardFooter>
+            <CardFooter className="flex justify-between">
+              <Link href="/" className=" items-center flex gap-1 text-slate"><GoArrowLeft /> Go back</Link>
               <Button type="submit">Add new</Button>
             </CardFooter>
           </form>
