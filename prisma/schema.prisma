@@ -2,6 +2,7 @@
 
 //migration command: npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > prisma/migrations/0_init/migration.sql
 //This is created with the wrong encoding, check if need to create a new migration.
+//npx prisma generate
 
 generator client {
   provider = "prisma-client-js"
@@ -15,11 +16,11 @@ datasource db {
 model Project {
     id          Int           @id @default(autoincrement())
     title       String        @unique @db.VarChar(255)
-    createdAt   DateTime      @default(now()) @db.Timestamp(6)
+    createdAt   DateTime?      @default(now()) @db.Timestamp(6)
     URI         String?       @db.VarChar(255)
     icon        String?
-    comments    String        @db.VarChar(2500)
-    tags        String        @default("[]")
+    comments    String?        @db.VarChar(2500)
+    tags        String?        @default("[]")
     Credentials Credentials[]
 }
 

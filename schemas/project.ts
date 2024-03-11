@@ -10,7 +10,7 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
 ];
 
 //Form Schema
-export const formSchema = z.object({
+export const projectSchema = z.object({
     title: z.string().min(3, { message: "Tittle must be longer than 3 characters" }).max(50, { message: "Title must be shorter than 50 characters." }),
     url: z.union([z.literal(""), z.string().trim().url()]),
     adImage: z
@@ -25,4 +25,4 @@ export const formSchema = z.object({
   
   });
 
-  export type formSchemaType = z.infer<typeof formSchema>
+  export type projectSchemaType = z.infer<typeof projectSchema>

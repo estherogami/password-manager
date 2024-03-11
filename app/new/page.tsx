@@ -2,7 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { formSchema } from "@/schemas/project"
+import { projectSchema } from "@/schemas/project"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -32,8 +32,8 @@ import { BsImage } from "react-icons/bs";
 
 function NewProjectPage() {
   // 1. Define form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof projectSchema>>({
+    resolver: zodResolver(projectSchema),
     defaultValues: {
       title: "",
       url: "",
@@ -42,7 +42,7 @@ function NewProjectPage() {
   })
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof projectSchema>) {
 
     //Convert to json and send to db
     // toast({
