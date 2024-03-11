@@ -11,9 +11,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription
 } from "@/components/ui/form"
-import { toast } from "@/components/ui/use-toast"
 import { Input } from "@/components/ui/input"
 import { GoArrowLeft } from "react-icons/go";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
@@ -27,23 +25,25 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Link from "next/link"
+import { BsImage } from "react-icons/bs";
+
 
 //File input validation variables
-const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const MAX_FILE_SIZE = 500000;
 const ACCEPTED_IMAGE_MIME_TYPES = [
   "image/jpeg",
   "image/jpg",
   "image/png",
   "image/webp",
 ];
-const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
+// const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
 
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Tittle must be longer than 3 characters" }).max(50, { message: "Title must be shorter than 50 characters." }),
-  url: z.string().optional(),
-  picture: z.any()
-    .optional()
+  url: z.union([z.literal(""), z.string().trim().url()]),
+  adImage: z
+    .any()
     .refine((files) => {
       return files?.[0]?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
@@ -51,6 +51,7 @@ const formSchema = z.object({
       (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
       "Only .jpg, .jpeg, .png and .webp formats are supported."
     ),
+
 });
 
 function NewProjectPage() {
@@ -59,8 +60,8 @@ function NewProjectPage() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
-      picture: "",
-      url: ""
+      url: "",
+      adImage: ""
     },
   })
 
@@ -71,17 +72,16 @@ function NewProjectPage() {
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
 
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      ),
-    })
-    console.log(values)
+    //Convert to json and send to db
+    // toast({
+    //   title: "You submitted the following values:",
+    //   description: (
+    //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+    //       <code className="text-white">{JSON.stringify(values, null, 2)}</code>
+    //     </pre>
+    //   ),
+    // })
+    console.log(values.adImage[0].name)
   }
 
 
@@ -101,46 +101,82 @@ function NewProjectPage() {
                   control={form.control}
                   name="title"
                   render={({ field }) => (
-                    <FormItem>
-                      <div className="mb-5 flex flex-col gap-3">
+                    <FormItem className="mb-5">
+                      <div className=" flex flex-col gap-3">
                         <FormLabel>Title</FormLabel>
                         <FormControl >
                           <Input placeholder="Project title" {...field} />
                         </FormControl>
                       </div>
+                      <FormMessage />
                     </FormItem>
                   )} />
+
                 <FormField
                   control={form.control}
                   name="url"
                   render={({ field }) => (
-                    <FormItem>
-                      <div className="mb-5 flex flex-col gap-3">
+                    <FormItem className="mb-5">
+                      <div className="flex flex-col gap-3">
                         <FormLabel>URL</FormLabel>
                         <FormControl>
                           <Input placeholder="http://www.url.com" {...field} />
                         </FormControl>
                       </div>
+                      <FormMessage />
                     </FormItem>
                   )} />
+
+
                 <FormField
                   control={form.control}
-                  name="picture"
+                  name="adImage"
                   render={({ field }) => (
                     <FormItem>
-                      <div className="mb-5 flex flex-col gap-3">
-                        <FormLabel>Picture</FormLabel>
-                        <FormControl>
-                          <Input id="picture" type="file" placeholder="shadcn" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          This picture will be shown as the thumbnail. <br />The picture must be 1:1 and at leas 50x50px.
-                        </FormDescription>
+                      {/* Preview image */}
+                      {/* {selectedImage ? (
+                            <div className="md:max-w-[200px]">
+                              <img
+                                src={URL.createObjectURL(selectedImage)}
+                                alt="Selected"
+                              />
+                            </div>
+                          ) : ( */}
+                      <div className="inline-flex items-center justify-between">
+                        <div className="p-3 bg-slate-200  justify-center items-center flex">
+                          <BsImage size={56} />
+                        </div>
+                        {/* )} */}
                       </div>
-                    </FormItem>
-                  )} />
-                <FormMessage />
+                      <FormControl>
+                        <Button size="lg" type="button">
+                          <input
+                            type="file"
+                            className="hidden"
+                            id="fileInput"
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            onChange={(e) => {
+                              field.onChange(e.target.files);
+                            }}
+                            ref={field.ref}
+                          />
+                          <label
+                            htmlFor="fileInput"
+                            className="bg-blue-500 hover:bg-blue-600 text-neutral-90  rounded-md cursor-pointer inline-flex items-center"
+                          >
 
+                            <span className="whitespace-nowrap">
+                              choose your image
+                            </span>
+                          </label>
+                        </Button>
+                      </FormControl>
+                      <FormMessage />
+
+                    </FormItem>
+                  )}
+                />
               </CardContent>
               <CardFooter className="flex justify-between">
                 <Link href="/" className=" items-center flex gap-1 text-slate"><GoArrowLeft /> Go back</Link>
