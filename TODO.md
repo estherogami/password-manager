@@ -25,11 +25,7 @@
 - [ ] Drag & Drop 
 
 5. API & DB
-- [ ] Run a postgresql database server on local
-- [ ] Prisma schema for project
-- [ ] Create project
-- [ ] GetProjectList
-- [ ] GetProjectById
-- [ ] DeleteProject
-- [ ] EditProject
+- [x] Run a postgresql database server on local
+- [ ] CRUD project
+- [ ] CRUD credentials
 - [x] DB Model & migration Prisma
