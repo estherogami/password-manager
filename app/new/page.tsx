@@ -36,9 +36,8 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
   "image/png",
   "image/webp",
 ];
-// const ACCEPTED_IMAGE_TYPES = ["jpeg", "jpg", "png", "webp"];
 
-
+//Form Schema
 const formSchema = z.object({
   title: z.string().min(3, { message: "Tittle must be longer than 3 characters" }).max(50, { message: "Title must be shorter than 50 characters." }),
   url: z.union([z.literal(""), z.string().trim().url()]),
@@ -54,6 +53,7 @@ const formSchema = z.object({
 
 });
 
+
 function NewProjectPage() {
   // 1. Define form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -64,10 +64,6 @@ function NewProjectPage() {
       adImage: ""
     },
   })
-
-
-
-
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
