@@ -1,0 +1,39 @@
+// Reference https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases/baseline-your-database-typescript-postgresql
+
+//migration command: npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > prisma/migrations/0_init/migration.sql
+//This is created with the wrong encoding, check if need to create a new migration.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Project {
+    id          Int           @id @default(autoincrement())
+    title       String        @unique @db.VarChar(255)
+    createdAt   DateTime      @default(now()) @db.Timestamp(6)
+    URI         String?       @db.VarChar(255)
+    icon        String?
+    comments    String        @db.VarChar(2500)
+    tags        String        @default("[]")
+    Credentials Credentials[]
+}
+
+model Credentials {
+    id         Int      @id @default(autoincrement())
+    pid        Int
+    project    Project  @relation(fields: [pid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+    key        String   @db.VarChar(255)
+    value      String   @db.VarChar(255)
+    input_type String   @db.VarChar(50)
+    order      Int      @unique
+    createdAt  DateTime @default(now()) @db.Timestamp(6)
+    updatedAt  DateTime @default(now()) @db.Timestamp(6)
+}
+
+
+//Future changes to schema here:  https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases/evolve-your-schema-typescript-postgresql

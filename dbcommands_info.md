@@ -4,6 +4,9 @@ https://www.prisma.io/dataguide/postgresql/create-and-delete-databases-and-table
 # Iniciar postgres
 psql
 
+# entrar como usuario postgres
+psql -U postgres
+
 # Crear db
 CREATE DATABASE nombredb ENCODING 'UTF8';
 

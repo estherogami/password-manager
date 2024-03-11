@@ -7,6 +7,7 @@
 - [x] Zod file validation picture.
 - [ ] Edit project if already exists.
 - [ ] File upload
+- [ ] Tags
 - [ ] Fix error if no image is uploaded, it should be an optional field.
 
 2. Project list (Dashboard)
@@ -31,3 +32,4 @@
 - [ ] GetProjectById
 - [ ] DeleteProject
 - [ ] EditProject
+- [x] DB Model & migration Prisma
