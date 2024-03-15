@@ -42,7 +42,7 @@ function ProjectForm() {
       defaultValues: {
         title: "",
         url: "",
-        adImage: ""
+        // adImage: ""
       },
     })
   
@@ -50,8 +50,7 @@ function ProjectForm() {
     async function onSubmit(values: z.infer<typeof projectSchema>) {
       try {
           const projectId = await CreateProject(values);
-          if(projectId) console.log("success")
-          // router.push(`/${projectId}`)
+          router.push(`/${projectId}`)
       } catch (error) {
         console.log(error)
         toast({
@@ -104,26 +103,26 @@ function ProjectForm() {
               </FormItem>
             )} />
 
-
+{/* 
           <FormField
             control={form.control}
             name="adImage"
             render={({ field }) => (
               <FormItem>
-                {/* Preview image */}
-                {/* {selectedImage ? (
+                 Preview image 
+                {selectedImage ? (
                       <div className="md:max-w-[200px]">
                         <img
                           src={URL.createObjectURL(selectedImage)}
                           alt="Selected"
                         />
                       </div>
-                    ) : ( */}
+                    ) : ( 
                 <div className="inline-flex items-center justify-between">
                   <div className="p-3 bg-slate-200  justify-center items-center flex">
                     <BsImage size={56} />
                   </div>
-                  {/* )} */}
+                  {/* )} 
                 </div>
                 <FormControl>
                   <Button size="lg" type="button">
@@ -153,7 +152,7 @@ function ProjectForm() {
 
               </FormItem>
             )}
-          />
+          /> */}
         </CardContent>
         <CardFooter className="flex justify-between">
           <Link href="/" className=" items-center flex gap-1 text-slate"><GoArrowLeft /> Go back</Link>
