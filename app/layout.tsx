@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme/theme-provider"
 import { ToggleTheme } from "@/components/theme/toggle-theme";
 import { UserButton } from "@clerk/nextjs";
 import { Sidebar } from "lucide-react";
+import { Toaster } from "@/components/ui/toaster";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,6 +44,7 @@ export default function RootLayout({
             </div>
 
             {children}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

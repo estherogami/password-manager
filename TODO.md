@@ -26,6 +26,7 @@
 
 5. API & DB
 - [x] Run a postgresql database server on local
-- [ ] CRUD project
+- [ ] CRUD project  
+    - [x] Create
 - [ ] CRUD credentials
 - [x] DB Model & migration Prisma
