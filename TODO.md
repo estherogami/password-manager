@@ -5,9 +5,9 @@
 - [ ] Redirect when created & Show toast.
 - [x] Show validation error messages.
 - [x] Zod file validation picture.
-- [ ] Edit project if already exists.
-- [ ] File upload
-- [ ] Tags
+- [ ] Edit project.
+- [ ] File upload.
+- [ ] Tags.
 - [ ] Fix error if no image is uploaded, it should be an optional field.
 
 2. Project list (Dashboard)
@@ -28,5 +28,9 @@
 - [x] Run a postgresql database server on local
 - [ ] CRUD project  
     - [x] Create
+    - [ ] GetAll
+    - [ ] GetById
+    - [ ] Edit
+    - [ ] Remove
 - [ ] CRUD credentials
 - [x] DB Model & migration Prisma
