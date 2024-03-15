@@ -3,14 +3,14 @@ import ProjectListCardItem from "./projectListCardItem";
 
 async function ProjectList() {
     const projects = await GetAllProjects();
-    console.log(projects);
-    
-  return (
-    <div>
-      {projects.map((project) => 
-        <ProjectListCardItem key={project.id} />)}
-    </div>
-  )
+    return (
+        <ul className="grid md:grid-cols-3 gap-5 ">
+            {projects.map((project) =>
+                <li key={project.id}>
+                    <ProjectListCardItem project={project} />
+                </li>)}
+        </ul>
+    )
 }
 
 export default ProjectList

@@ -17,6 +17,7 @@
 - [ ] List
 - [ ] Show favourites first
 - [ ] Skelleton (preload)
+- [ ] add favorite
 
 3. Project Credentials
 - [ ] Skelleton (preload)
