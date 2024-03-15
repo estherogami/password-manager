@@ -13,6 +13,9 @@
 2. Project list (Dashboard)
 - [ ] Search
 - [ ] Autocomplete
+- [ ] order 
+- [ ] List
+- [ ] Show favourites first
 - [ ] Skelleton (preload)
 
 3. Project Credentials
@@ -28,7 +31,7 @@
 - [x] Run a postgresql database server on local
 - [ ] CRUD project  
     - [x] Create
-    - [ ] GetAll
+    - [x] GetAll
     - [ ] GetById
     - [ ] Edit
     - [ ] Remove
