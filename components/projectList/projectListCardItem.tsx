@@ -21,16 +21,17 @@ import { FiExternalLink } from "react-icons/fi";
 
 //obtenemos el tipo directamente de prisma client
 import { Project } from '@prisma/client';
+import Link from "next/link";
 
 
 function ProjectListCardItem({ project }: { project: Project }) {
-    return (
-        <Card>
-            <CardHeader className="flex flex-wrap flex-row justify-between">
-                <div>
-                    <CardTitle className="truncate">{project.title}</CardTitle>
-                </div>
+    const {id, URI, title } = project
 
+    return (
+        <Link href={`/${id}`}>
+        <Card>
+            <CardHeader className="flex flex-nowrap flex-row justify-between">
+                <CardTitle className="truncate hover:underline">{title}</CardTitle>
                 <DropdownMenu>
                     <DropdownMenuTrigger><IoIosMore /></DropdownMenuTrigger>
                     <DropdownMenuContent>
@@ -42,7 +43,12 @@ function ProjectListCardItem({ project }: { project: Project }) {
             </CardHeader>
             <CardContent>
                 <CardDescription>
-                    {project.URI ? <a href={project.URI} target="_blank" rel="nofollow noreferrer" className="flex gap-3 truncate">{project.URI} <FiExternalLink /></a>: <br />}
+                    {URI ? <a
+                        href={URI}
+                        target="_blank"
+                        rel="nofollow noreferrer"
+                        className="flex gap-3 truncate relative z-50 hover:underline ">
+                        {project.URI} <FiExternalLink /></a> : <br />}
                 </CardDescription>
                 <p>nº credenciales</p>
             </CardContent>
@@ -50,6 +56,7 @@ function ProjectListCardItem({ project }: { project: Project }) {
                 <p>tag</p>
             </CardFooter>
         </Card>
+        </Link>
     )
 }
 

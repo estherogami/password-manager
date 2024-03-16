@@ -31,7 +31,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="p-2 border-b-2 absolute w-full inset bg-white">
+            <div className="p-2 border-b-1 absolute w-full inset bg-white dark:bg-slate-950">
               <nav className="flex flex-wrap flex-row justify-between">
                 <div className="text-xl font-extrabold uppercase flex gap-1">
                   <Sidebar /> Pwd Manager
