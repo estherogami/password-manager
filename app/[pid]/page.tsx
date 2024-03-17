@@ -11,24 +11,25 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
 import ProjectDropDown from "@/components/projectList/projectDropDown";
+import { buttonVariants } from "@/components/ui/button"
 export default async function Project({ params }: { params: { pid: string } }) {
   const { pid } = params;
   //Show toast if created new
   const project = await GetProjectById(parseInt(pid));
   return (
     <main className="h-full pt-[58px] bg-slate-100 dark:bg-slate-900">
-      <div className="flex flex-wrap flex-row gap-5 h-full">
+      <div className="flex flex-wrap flex-row h-full">
         <Sidebar />
         <div className="grow">
           <Suspense fallback={<SkeletonHeader />}>
-            <div className="flex">
-              <div className="flex gap-5">
-                <Avatar>
+            <div className="flex w-full  p-10 border-b  bg-slate-200  border-slate-300 dark:bg-slate-800 dark:border-slate-700">
+              <div className="flex gap-5 w-full nowrap align-middle">
+                <Avatar className="w-[70px] h-[70px]">
                   <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
-                <div>
-                  <h1>{project?.title} </h1>
+                <div className="grow">
+                  <h1 className="text-3xl truncate">{project?.title} </h1>
                   {project?.URI ? <a
                     href={project.URI}
                     target="_blank"
@@ -38,8 +39,9 @@ export default async function Project({ params }: { params: { pid: string } }) {
                   <Badge variant="secondary">Personal</Badge>
                 </div>
               </div>
-              <div>
+              <div className="flex flex-column flex-wrap justify-end">
                 <ProjectDropDown />
+                <Link href={`${pid}/builder`} className={buttonVariants({ variant: "default" })}>Add credential</Link>
               </div>
             </div>
           </Suspense>

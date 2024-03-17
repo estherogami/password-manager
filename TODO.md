@@ -32,11 +32,12 @@
 
 5. API & DB
 - [x] Run a postgresql database server on local
+- [ ] Add repo and tags to project
 - [ ] CRUD project  
     - [x] Create
     - [x] GetAll
     - [x] GetById
     - [ ] Edit
-    - [ ] Remove
+    - [ ] Delete
 - [ ] CRUD credentials
 - [x] DB Model & migration Prisma
