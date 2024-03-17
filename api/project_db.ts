@@ -9,6 +9,7 @@ export async function CreateProject(data: projectSchemaType) {
     if(!validation.success) throw new Error("Form not valid");
     /*@ts-ignore */ //Provisional while images are disabled
     const {title, url, adImage} = data;
+    await new Promise(resolve => setTimeout(resolve, 3000));
     const project = await prisma.project.create({
         data: {
             title,

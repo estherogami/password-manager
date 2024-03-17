@@ -9,14 +9,15 @@
 - [ ] File upload.
 - [ ] Tags.
 - [ ] Fix error if no image is uploaded, it should be an optional field.
+- [ ] Spinner on button when creating
 
 2. Project list (Dashboard)
 - [ ] Search
 - [ ] Autocomplete
 - [ ] order 
-- [ ] List
+- [x] List
 - [ ] Show favourites first
-- [ ] Skelleton (preload)
+- [x] Skeleton (preload) //Cant test this because local is too fast but created a skeleton
 - [ ] add favorite
 
 3. Project Credentials

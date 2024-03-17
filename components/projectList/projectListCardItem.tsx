@@ -12,7 +12,6 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Toggle } from "@/components/ui/toggle"
 import { TiStarOutline } from "react-icons/ti";
 import { IoIosMore } from "react-icons/io";
 import { FiExternalLink } from "react-icons/fi";
@@ -28,8 +27,7 @@ function ProjectListCardItem({ project }: { project: Project }) {
     const {id, URI, title } = project
 
     return (
-        <Link href={`/${id}`}>
-        <Card>
+        <Card className="relative">
             <CardHeader className="flex flex-nowrap flex-row justify-between">
                 <CardTitle className="truncate hover:underline">{title}</CardTitle>
                 <DropdownMenu>
@@ -55,8 +53,8 @@ function ProjectListCardItem({ project }: { project: Project }) {
             <CardFooter>
                 <p>tag</p>
             </CardFooter>
+            <Link href={`/${id}`} className="absolute z-1 block inset-0"></Link>
         </Card>
-        </Link>
     )
 }
 
