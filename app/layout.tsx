@@ -7,7 +7,8 @@ import { ToggleTheme } from "@/components/theme/toggle-theme";
 import { UserButton } from "@clerk/nextjs";
 import { Sidebar } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
-
+import Link from "next/link";
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,10 +32,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="p-2 border-b-1 absolute w-full inset bg-white dark:bg-slate-950">
+            <div className="p-2 pt-4 border-b-1 absolute w-full inset bg-white dark:bg-slate-950">
               <nav className="flex flex-wrap flex-row justify-between">
                 <div className="text-xl font-extrabold uppercase flex gap-1">
-                  <Sidebar /> Pwd Manager
+                  <Sidebar /> <Link href="/">Pwd Manager</Link>
                 </div>
                 <div className="flex flex-wrap flex-row justify-end gap-5 ">
                   <ToggleTheme />
@@ -42,7 +43,7 @@ export default function RootLayout({
                 </div>
               </nav>
             </div>
-
+            <NextTopLoader />
             {children}
             <Toaster />
           </ThemeProvider>
