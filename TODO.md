@@ -1,5 +1,4 @@
 # TODO LIST
-
 1. New Project Page
 - [ ] Preview image upload.
 - [ ] Redirect when created & Show toast.
