@@ -10,6 +10,7 @@
 - [ ] Tags.
 - [ ] Fix error if no image is uploaded, it should be an optional field.
 - [ ] Spinner on button when creating
+- [ ] Show toast after redirect for success message
 
 2. Project list (Dashboard)
 - [ ] Search
@@ -21,10 +22,11 @@
 - [ ] add favorite
 
 3. Project Credentials
-- [ ] Skelleton (preload)
+- [ ] Skeleton (preload)
 - [ ] Project info
 - [ ] Credentials list
 - [ ] Edit, add buttons
+- [ ] 404 not found
 
 4. New Credentials
 - [ ] Drag & Drop 
@@ -34,7 +36,7 @@
 - [ ] CRUD project  
     - [x] Create
     - [x] GetAll
-    - [ ] GetById
+    - [x] GetById
     - [ ] Edit
     - [ ] Remove
 - [ ] CRUD credentials

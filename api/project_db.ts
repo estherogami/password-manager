@@ -34,8 +34,19 @@ export async function GetAllProjects() {
 }
 
 //Get Project By Id
-export async function GetProjectById() {
-
+export async function GetProjectById(id: number) {
+    if(!id || isNaN(id)) throw new Error("Couldnt retrieve project id.")
+    try {
+        const project = await prisma.project.findUnique({
+            where: {
+                id
+            }
+        })
+        return project
+    } catch (error) {
+        console.log(error)
+        throw new Error("Project not found.")
+    }
 }
 
 //UpdateProject
