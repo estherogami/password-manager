@@ -27,7 +27,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Link from "next/link"
-import { BsImage } from "react-icons/bs";
 
 import { CreateProject } from "@/api/project_db"
 import { useRouter } from "next/navigation";

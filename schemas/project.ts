@@ -26,3 +26,13 @@ export const projectSchema = z.object({
   });
 
   export type projectSchemaType = z.infer<typeof projectSchema>
+
+
+
+  export const credentialTitleSchema = z.object({
+    title: z.string().min(2, {
+      message: "Credential title must be at least 2 characters.",
+    }),
+  })
+
+  export type credentialTitleSchemaType = z.infer<typeof credentialTitleSchema>
