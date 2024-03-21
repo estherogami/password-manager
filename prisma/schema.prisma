@@ -5,7 +5,7 @@
 //npx prisma generate
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
@@ -16,25 +16,32 @@ datasource db {
 model Project {
     id          Int           @id @default(autoincrement())
     title       String        @unique @db.VarChar(255)
-    createdAt   DateTime?      @default(now()) @db.Timestamp(6)
+    createdAt   DateTime?     @default(now()) @db.Timestamp(6)
     URI         String?       @db.VarChar(255)
     icon        String?
-    comments    String?        @db.VarChar(2500)
-    tags        String?        @default("[]")
+    comments    String?       @db.VarChar(2500)
+    tags        String?       @default("[]")
     Credentials Credentials[]
 }
 
 model Credentials {
-    id         Int      @id @default(autoincrement())
+    id         Int               @id @default(autoincrement())
     pid        Int
-    project    Project  @relation(fields: [pid], references: [id], onDelete: NoAction, onUpdate: NoAction)
-    key        String   @db.VarChar(255)
-    value      String   @db.VarChar(255)
-    input_type String   @db.VarChar(50)
-    order      Int      @unique
-    createdAt  DateTime @default(now()) @db.Timestamp(6)
-    updatedAt  DateTime @default(now()) @db.Timestamp(6)
+    project    Project           @relation(fields: [pid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+    title      String            @db.VarChar(255)
+    credential CredentialField[]
+    order      Int               @unique
+    createdAt  DateTime          @default(now()) @db.Timestamp(6)
+    updatedAt  DateTime          @default(now()) @db.Timestamp(6)
 }
 
+model CredentialField {
+    id         Int         @id @default(autoincrement())
+    cid        Int
+    credential Credentials @relation(fields: [cid], references: [id], onDelete: NoAction, onUpdate: NoAction)
+    key        String      @db.VarChar(255)
+    value      String      @db.VarChar(255)
+    input_type String      @db.VarChar(50)
+}
 
 //Future changes to schema here:  https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases/evolve-your-schema-typescript-postgresql

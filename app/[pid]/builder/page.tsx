@@ -1,7 +1,5 @@
 import { GetProjectById } from "@/api/project_db";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import Link from "next/link";
 import { GoArrowLeft } from "react-icons/go";
 import {
@@ -29,8 +27,6 @@ async function Builder({ params }: { params: { pid: string } }) {
                 <Link href="/" className=" items-center flex text-slate"><GoArrowLeft /> Go back</Link>
                 <Button type="submit">Save</Button>
             </div>
-
-
             <div className="w-full my-5">
                 <NewCredentialForm />
             </div>

@@ -12,12 +12,7 @@ import {
   import { Button } from "@/components/ui/button";
   import { Input } from "@/components/ui/input"
   import { credentialTitleSchema } from "@/schemas/project"
-  
-//   const credentialTitleSchema = z.object({
-//     title: z.string().min(2, {
-//       message: "Credential title must be at least 2 characters.",
-//     }),
-//   })
+
 
 function NewCredentialForm() {
      // 1. Define form.
@@ -51,7 +46,7 @@ function NewCredentialForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Add new</Button>
+        <Button type="submit">Add new </Button>
         </form>
     </Form>
     </div>
