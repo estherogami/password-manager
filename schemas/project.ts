@@ -28,9 +28,3 @@ export const projectSchema = z.object({
   export type projectSchemaType = z.infer<typeof projectSchema>
 
 
-
-  export const credentialTitleSchema = z.object({
-    title: z.string(),
-  })
-
-  export type credentialTitleSchemaType = z.infer<typeof credentialTitleSchema>

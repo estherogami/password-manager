@@ -22,13 +22,16 @@
 
 3. Project Credentials
 - [ ] Skeleton (preload)
-- [ ] Project info
+- [x] Project info
 - [ ] Credentials list
 - [ ] Edit, add buttons
 - [ ] 404 not found
 
-4. New Credentials
+
+4. Credentials (Builder)
+- [x] Add credential
 - [ ] Drag & Drop 
+- [ ] Credential list context for updating between siblings
 
 5. API & DB
 - [x] Run a postgresql database server on local
@@ -40,4 +43,9 @@
     - [ ] Edit
     - [ ] Delete
 - [ ] CRUD credentials
+    - [x] Create
+    - [ ] GetAll
+    - [ ] GetById
+    - [ ] Edit
+    - [ ] Delete
 - [x] DB Model & migration Prisma

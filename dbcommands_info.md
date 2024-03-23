@@ -36,3 +36,5 @@ CREATE TABLE supplies (
 # Drop
 
 data modeling https://www.prisma.io/dataguide/datamodeling/intro-dont-panic
+
+

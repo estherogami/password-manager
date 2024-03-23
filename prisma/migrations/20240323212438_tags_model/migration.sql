@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Credentials" ALTER COLUMN "order" DROP NOT NULL,
+ALTER COLUMN "createdAt" DROP NOT NULL,
+ALTER COLUMN "updatedAt" DROP NOT NULL;

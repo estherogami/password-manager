@@ -10,3 +10,6 @@ psql -U postgres
 
 # Start prisma studio
 npx prisma studio
+
+# New db migration
+npx prisma migrate dev --name tags-model 

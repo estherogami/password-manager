@@ -24,11 +24,11 @@ async function Builder({ params }: { params: { pid: string } }) {
     return (
         <div className="h-full p-5 bg-[url('/images/graph-paper.svg')]">
             <div className="flex justify-between flex-wrap h-[50px] w-full ">
-                <Link href="/" className=" items-center flex text-slate"><GoArrowLeft /> Go back</Link>
-                <Button type="submit">Save</Button>
+                <Link href={`/${pid}`} className=" items-center flex text-slate"><GoArrowLeft /> Go back</Link>
+                {/* <Button type="submit">Save changes</Button> */}
             </div>
             <div className="w-full my-5">
-                <NewCredentialForm />
+                <NewCredentialForm pid={parseInt(pid)}/>
             </div>
             <div className="flex flex-wrap gap-2 justify-between">
                 <div className="grow">

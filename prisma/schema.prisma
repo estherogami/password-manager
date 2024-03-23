@@ -30,18 +30,20 @@ model Credentials {
     project    Project           @relation(fields: [pid], references: [id], onDelete: NoAction, onUpdate: NoAction)
     title      String            @db.VarChar(255)
     credential CredentialField[]
-    order      Int               @unique
-    createdAt  DateTime          @default(now()) @db.Timestamp(6)
-    updatedAt  DateTime          @default(now()) @db.Timestamp(6)
+    order      Int?               @default(autoincrement())
+    createdAt  DateTime?        @default(now()) @db.Timestamp(6)
+    updatedAt  DateTime?         @default(now()) @db.Timestamp(6)
 }
 
 model CredentialField {
     id         Int         @id @default(autoincrement())
     cid        Int
     credential Credentials @relation(fields: [cid], references: [id], onDelete: NoAction, onUpdate: NoAction)
-    key        String      @db.VarChar(255)
-    value      String      @db.VarChar(255)
-    input_type String      @db.VarChar(50)
+    key        String      @db.VarChar(255) @default("")
+    value      String      @db.VarChar(255) @default("")
+    input_type String      @db.VarChar(50) @default("text")
+    createdAt  DateTime    @default(now()) @db.Timestamp(6)
+    updatedAt  DateTime    @default(now()) @db.Timestamp(6)
 }
 
 //Future changes to schema here:  https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases/evolve-your-schema-typescript-postgresql
