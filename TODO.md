@@ -8,7 +8,6 @@
 - [ ] File upload.
 - [ ] Tags.
 - [ ] Fix error if no image is uploaded, it should be an optional field.
-- [ ] Spinner on button when creating
 - [ ] Show toast after redirect for success message
 
 2. Project list (Dashboard)
@@ -21,7 +20,6 @@
 - [ ] add favorite
 
 3. Project Credentials
-- [ ] Skeleton (preload)
 - [x] Project info
 - [ ] Credentials list
 - [ ] Edit, add buttons

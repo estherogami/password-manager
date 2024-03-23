@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button"
 import ProjectHeader from "@/components/projectHeader/projectHeader";
+import CredentialTabs from "@/components/credentialTabs/credentialTabs";
+
 
 
 export default async function Project({ params }: { params: { pid: string } }) {
@@ -12,18 +14,12 @@ export default async function Project({ params }: { params: { pid: string } }) {
   const project = await GetProjectById(parseInt(pid));
   return (
     <>
-        
-          <Suspense fallback={<SkeletonHeader />}>
-            {project && <ProjectHeader project={project} />}
-          </Suspense>
-          <div>
-            <div>
-            <Link href={`${pid}/builder`} className={buttonVariants({ variant: "default" })}>Add credential</Link>
-            credentials list
-            </div>
-            credentials info</div>
-        
-        </>
+      <Suspense fallback={<SkeletonHeader />}>
+        {project && <ProjectHeader project={project} />}
+      </Suspense>
+      <Link href={`${pid}/builder`} className={buttonVariants({ variant: "default" })}>Edit credentials</Link>
+     <CredentialTabs />
+    </>
   );
 }
 
