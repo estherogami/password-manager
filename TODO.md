@@ -21,7 +21,8 @@
 
 3. Project Credentials
 - [x] Project info
-- [ ] Credentials list
+- [x] Credentials list
+- [ ] Order
 - [ ] Edit, add buttons
 - [ ] 404 not found
 
@@ -42,7 +43,7 @@
     - [ ] Delete
 - [ ] CRUD credentials
     - [x] Create
-    - [ ] GetAll
+    - [ ] GetAll (by project)
     - [ ] GetById
     - [ ] Edit
     - [ ] Delete
