@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 //Create credential
 export async function createCredential(title: string, pid: number) {
-    //Check if pid exists before create+
+    //Check if pid exists before create
     const credential = await prisma.credentials.create({
         data: {
             pid,
@@ -15,10 +15,17 @@ export async function createCredential(title: string, pid: number) {
     return credential.id
 }
 
-//Get all credentials (edit to get by project)
-export async function getAllCredentials() {
+//Get all credentials 
+export async function getAllCredentialsByProjectId(pid: number) {
     try {
-        const credentials = await prisma.credentials.findMany();
+        const credentials = await prisma.credentials.findMany({
+            where: {
+                pid
+            },
+            orderBy: {
+                order: "asc"
+            }
+        });
         if (!credentials) throw new Error("Something went wrong")
         return credentials;
     } catch (error) {

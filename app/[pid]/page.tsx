@@ -18,7 +18,8 @@ export default async function Project({ params }: { params: { pid: string } }) {
         {project && <ProjectHeader project={project} />}
       </Suspense>
       <Link href={`${pid}/builder`} className={buttonVariants({ variant: "default" })}>Edit credentials</Link>
-     <CredentialTabs />
+      
+      <CredentialTabs pid={parseInt(pid)} />
     </>
   );
 }

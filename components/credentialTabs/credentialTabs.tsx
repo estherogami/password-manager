@@ -1,4 +1,4 @@
-import { getAllCredentials } from "@/api/credentials_db";
+import { getAllCredentialsByProjectId } from "@/api/credentials_db";
 import {
     Tabs,
     TabsContent,
@@ -9,11 +9,11 @@ import { slugify } from "@/lib/utils";
 import { Credentials } from "@prisma/client";
 import { MdArrowRight } from "react-icons/md";
 
-async function CredentialTabs() {
-    const credentials: Credentials[] = await getAllCredentials();
+async function CredentialTabs({pid}: {pid: number}) {
+    const credentials: Credentials[] = await getAllCredentialsByProjectId(pid);
 
     return (
-        <Tabs defaultValue="account" className="flex gap-5">
+        <Tabs className="flex gap-5">
             {/* Tabs list */}
             <div className="w-[300px]">
                 <TabsList className="grid w-full grid-cols-1">
