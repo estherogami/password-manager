@@ -1,4 +1,3 @@
-import { GetProjectById } from "@/api/project_db";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { GoArrowLeft } from "react-icons/go";
@@ -12,15 +11,10 @@ import {
 } from "@/components/ui/card"
 import NewCredentialForm from "@/components/credentialForm/newCredentialForm";
 
- 
-
-
 
 
 async function Builder({ params }: { params: { pid: string } }) {
     const { pid } = params;
-    const project = await GetProjectById(parseInt(pid));
-
     return (
         <div className="h-full p-5 bg-[url('/images/graph-paper.svg')]">
             <div className="flex justify-between flex-wrap h-[50px] w-full ">

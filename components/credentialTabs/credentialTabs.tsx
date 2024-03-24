@@ -9,14 +9,17 @@ import { slugify } from "@/lib/utils";
 import { Credentials } from "@prisma/client";
 import { MdArrowRight } from "react-icons/md";
 
-async function CredentialTabs({pid}: {pid: number}) {
+async function CredentialTabs({ pid }: { pid: number }) {
     const credentials: Credentials[] = await getAllCredentialsByProjectId(pid);
 
     return (
-        <Tabs className="flex gap-5">
+        <Tabs defaultValue="comments" className="flex gap-5">
             {/* Tabs list */}
             <div className="w-[300px]">
                 <TabsList className="grid w-full grid-cols-1">
+                    <TabsTrigger value="comments" className="flex justify-between">
+                        Comments<MdArrowRight />
+                    </TabsTrigger>
                     {credentials.map((credential) => <TabsTrigger key={credential.id} value={slugify(credential.title)} className="flex justify-between">
                         {credential.title} <MdArrowRight />
                     </TabsTrigger>)}
@@ -25,6 +28,9 @@ async function CredentialTabs({pid}: {pid: number}) {
 
             {/* Tabs content */}
             <div className="grow">
+                <TabsContent value="comments">
+                    Comments
+                </TabsContent>
                 {credentials.map((credential, i) => <TabsContent key={credential.id} value={slugify(credential.title)}>
                     {credential.title}
                 </TabsContent>)}

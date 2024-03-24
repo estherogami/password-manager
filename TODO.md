@@ -22,15 +22,18 @@
 3. Project Credentials
 - [x] Project info
 - [x] Credentials list
-- [ ] Order
+- [x] Order
 - [ ] Edit, add buttons
 - [ ] 404 not found
+- [ ] Comments wyswyg
+- [ ] Drawer for switching project instead of sidebar
 
 
 4. Credentials (Builder)
 - [x] Add credential
 - [ ] Drag & Drop 
 - [ ] Credential list context for updating between siblings
+- [ ] Credential fields
 
 5. API & DB
 - [x] Run a postgresql database server on local
@@ -43,7 +46,7 @@
     - [ ] Delete
 - [ ] CRUD credentials
     - [x] Create
-    - [ ] GetAll (by project)
+    - [x] Get all by project
     - [ ] GetById
     - [ ] Edit
     - [ ] Delete
