@@ -32,7 +32,7 @@
 4. Credentials (Builder)
 - [x] Add credential
 - [ ] Drag & Drop 
-- [ ] Credential list context for updating between siblings
+- [x] Builder context
 - [ ] Credential fields
 
 5. API & DB

@@ -13,9 +13,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"
 import { credentialSchema } from "@/schemas/credential"
 import { createCredential } from "@/api/credentials_db"
+import useBuilder from "../hooks/useBuilder"
 
 
 function NewCredentialForm({ pid }: { pid: number }) {
+  const context = useBuilder();
+
   // 1. Define form.
   const form = useForm<z.infer<typeof credentialSchema>>({
     resolver: zodResolver(credentialSchema),
@@ -23,10 +26,11 @@ function NewCredentialForm({ pid }: { pid: number }) {
       title: "",
     },
   })
-
+  
   async function onSubmit(values: z.infer<typeof credentialSchema>) {
-    const credentialId = await createCredential(values.title, pid)
-    return console.log(credentialId)
+    // const credentialId = await createCredential(values.title, pid)
+    context.setCredential(values.title, pid)
+    // return console.log(credentialId)
   }
 
   return (
