@@ -1,4 +1,3 @@
-"use client"
 import {
     Card,
     CardContent,
@@ -11,9 +10,13 @@ import NewCredentialForm from "@/components/builder/credentialForm/newCredential
 import { Button } from "@/components/ui/button";
 import { BuilderProvider } from "../builderContext/builderContext";
 import CredentialList from "../credentialList/credentialList";
+import { Credentials } from "@prisma/client";
 
 
-function Builder({ pid }: { pid: number }) {
+function Builder({ pid, credentials }: { pid: number, credentials: Credentials[] | null  }) {
+
+    const handleSelectedCredential = () => {}
+
     return (
         <>
             <BuilderProvider>
@@ -28,7 +31,7 @@ function Builder({ pid }: { pid: number }) {
                                 <CardDescription>Drag and drop to modify order. <br />Click to modify options</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                {/* <CredentialList pid={pid}/> */}
+                                <CredentialList pid={pid} credentials={credentials} />
                             </CardContent>
                         </Card>
                     </div>

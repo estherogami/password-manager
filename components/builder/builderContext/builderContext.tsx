@@ -2,7 +2,7 @@
 
 import { createCredential, getAllCredentialsByProjectId } from "@/api/credentials_db";
 import { CredentialField, Credentials } from "@prisma/client";
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode, useEffect, Dispatch, SetStateAction } from 'react';
 
 
 interface CredentialsProviderProps {
@@ -10,22 +10,34 @@ interface CredentialsProviderProps {
 }
 export type BuilderContextType = {
     credentials: Credentials[];
+    setCredentials: (Dispatch<SetStateAction<Credentials[] | null>>)
     setCredential: (title: string, pid: number) => void;
+    getCredentials: (pid: number) => Promise<Credentials[]>
 };
 
-const BuilderContext = createContext<BuilderContextType | null>({
-    //Default values
-    credentials: [],
-    setCredential: async (title: String, pid: number) => { },
-});
+const BuilderContext = createContext<BuilderContextType | null>(
+    null
+//     {
+//     //Default values
+//     credentials: [],
+//     setCredential: async (title: string, pid: number) => { },
+//     getCredentials: async (pid: number) => {await []}
+// }
+);
 
 
 export function BuilderProvider(props: CredentialsProviderProps) {
     const [credentials, setCredentials] = useState<Credentials[]>([])
+
     const context: BuilderContextType = {
         credentials,
-        setCredential: setNewCredential
+        setCredentials,
+        setCredential: setNewCredential,
+        getCredentials: getAllCredentialsByProjectId
     }
+   
+
+    
     
     async function setNewCredential(title: string, pid: number){
       const credentialId = await createCredential(title, pid);
