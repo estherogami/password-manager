@@ -13,7 +13,7 @@ import CredentialList from "../credentialList/credentialList";
 import { Credentials } from "@prisma/client";
 
 
-function Builder({ pid, credentials }: { pid: number, credentials: Credentials[] | null  }) {
+function Builder({ pid, credentials }: { pid: number, credentials: Credentials[]  }) {
 
     const handleSelectedCredential = () => {}
 
@@ -27,8 +27,7 @@ function Builder({ pid, credentials }: { pid: number, credentials: Credentials[]
                     <div className="grow">
                         <Card >
                             <CardHeader>
-                                <CardTitle>Credentials list</CardTitle>
-                                <CardDescription>Drag and drop to modify order. <br />Click to modify options</CardDescription>
+                                <CardDescription>Drag and drop to reorder. <br />Click to edit options</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <CredentialList pid={pid} credentials={credentials} />

@@ -17,7 +17,6 @@ import useBuilder from "../hooks/useBuilder"
 
 
 function NewCredentialForm({ pid }: { pid: number }) {
-  const context = useBuilder();
 
   // 1. Define form.
   const form = useForm<z.infer<typeof credentialSchema>>({
@@ -28,8 +27,7 @@ function NewCredentialForm({ pid }: { pid: number }) {
   })
   
   async function onSubmit(values: z.infer<typeof credentialSchema>) {
-    // const credentialId = await createCredential(values.title, pid)
-    context.setCredential(values.title, pid)
+   const credentialId = await createCredential(values.title, pid)
     // return console.log(credentialId)
   }
 
