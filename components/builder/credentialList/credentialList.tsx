@@ -16,8 +16,8 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { useDroppable } from "@dnd-kit/core";
-import { forwardRef, useState } from "react";
-import DraggableCredentialList from "./draggableCredentialList";
+import { useState } from "react";
+import DraggableCredentialList, { OverlayItem } from "./draggableCredentialList";
 
 function CredentialList({
   pid,
@@ -32,13 +32,13 @@ function CredentialList({
   const sensors = useSensors(useSensor(PointerSensor));
   const [activeId, setActiveId] = useState(null); //For drag overlay
 
-  function handleDragStart(event) {
+  function handleDragStart(event: any) {
     const { active } = event;
 
     setActiveId(active.id);
   }
 
-  function handleDragEnd(event) {
+  function handleDragEnd(event: any) {
     const { active, over } = event;
     // console.log(event);
     if (active.id !== over.id) {
@@ -49,7 +49,7 @@ function CredentialList({
         return arrayMove(items, oldIndex, newIndex);
       });
     }
-    console.log(credentialItems);
+    // console.log(credentialItems);
   }
 
   return (
@@ -78,18 +78,10 @@ function CredentialList({
           </ul>
         </div>
         <DragOverlay>
-          {activeId ? <OverlayItem id={activeId} /> : null}
+          {activeId ? <OverlayItem id={activeId} credentials={credentialItems} /> : null}
         </DragOverlay>
       </DndContext>
     </>
   );
 }
 export default CredentialList;
-//https://docs.dndkit.com/presets/sortable
-export const OverlayItem = forwardRef(({ id, ...props }, ref) => {
-  return (
-    <div {...props} ref={ref}>
-      {id}
-    </div>
-  );
-});
